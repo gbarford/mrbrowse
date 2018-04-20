@@ -9,8 +9,10 @@ while True :
 
    f = open("./links.txt")
    startAddress = f.readlines()
-
-   driver = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver')
+   if os.path.exists('/usr/lib/chromium-browser/chromedriver'):
+        driver = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver')
+   else:
+        driver = webdriver.Chrome(executable_path='./chromedriver')
    try:
         ranAddress = randint(0, len(startAddress)-1)
         address = startAddress[ranAddress]
@@ -34,4 +36,7 @@ while True :
      driver.close()
    except Exception:
      pass
-   os.system("/usr/bin/killbrowsers.sh")
+   if os.path.exists('./killbrowsers.sh'):
+     os.system("./killbrowsers.sh")
+   else:
+     os.system("killbrowsers.bat")
