@@ -8,14 +8,25 @@ The script uses python to fetch a series of random websites based on links.txt i
 It will randomly pick a link from the list in links.txt, then pick a link on the website 5 times and repeat.
 
 
+
+
+
+
 For Ubuntu:
+===========
 
 Included is the ubuntu dpkg --get-selections from my test machine
 
 You will need selenium and chrome installed.  You will also need the chromedriver for selenium
 
 
+
+
+
+
+
 For Windows:
+============
 `
 Install chrome
 `
