@@ -3,16 +3,22 @@ from selenium import webdriver
 from random import randint
 import time
 import os
-
-
+ 
+f = open("./links.txt")
+startAddress = f.readlines()
+ 
 while True :
-
-   f = open("./links.txt")
-   startAddress = f.readlines()
    if os.path.exists('/usr/lib/chromium-browser/chromedriver'):
         driver = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver')
    else:
-        driver = webdriver.Chrome(executable_path='./chromedriver')
+        number=randint(0,2)
+        if number == 0:
+           driver = webdriver.Chrome(executable_path='./chromedriver')
+        elif number == 1:
+           driver = webdriver.Firefox(executable_path='./geckodriver')
+        else:
+           driver = webdriver.Ie(executable_path='./IEDriverServer.exe')
+       
    try:
         ranAddress = randint(0, len(startAddress)-1)
         address = startAddress[ranAddress]
@@ -36,7 +42,4 @@ while True :
      driver.close()
    except Exception:
      pass
-   if os.path.exists('./killbrowsers.sh'):
-     os.system("./killbrowsers.sh")
-   else:
-     os.system("killbrowsers.bat")
+   os.system("killbrowsers.bat")
